@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for plausible-clickhouse on 2024-04-04T17:09:58-03:00
+# fly.toml app configuration file generated for plausible-clickhouse-wandering-sun-4794 on 2024-04-09T20:45:17-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'plausible-clickhouse'
+app = 'plausible-clickhouse-wandering-sun-4794'
 primary_region = 'gru'
 kill_signal = 'SIGINT'
 kill_timeout = '5s'
@@ -13,13 +13,9 @@ kill_timeout = '5s'
 
 [build]
 
-[mounts]
+[[mounts]]
   source = 'plausible_clickhouse_data'
   destination = '/var/lib/clickhouse'
-
-[[services]]
-  internal_port = 8123
-  protocol      = "tcp"
 
 [http_service]
   internal_port = 8080
@@ -28,6 +24,11 @@ kill_timeout = '5s'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
+
+[[services]]
+  protocol = 'tcp'
+  internal_port = 8123
+  ports = []
 
 [[vm]]
   memory = '1gb'
